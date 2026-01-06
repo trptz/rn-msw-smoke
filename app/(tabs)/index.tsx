@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Platform, Pressable, StyleSheet } from "react-native";
 
 import { HelloWave } from "@/components/hello-wave";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
@@ -7,7 +8,27 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Link } from "expo-router";
 
+const API_BASE_URL = "http://localhost:4010";
+
 export default function HomeScreen() {
+  const [response, setResponse] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchHello = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${API_BASE_URL}/hello`);
+      const data = await res.json();
+      setResponse(data.text);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Unknown error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -21,6 +42,21 @@ export default function HomeScreen() {
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
+      </ThemedView>
+
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">API Test</ThemedText>
+        <Pressable style={styles.button} onPress={fetchHello}>
+          <ThemedText style={styles.buttonText}>
+            {loading ? "Loading..." : "Fetch /hello"}
+          </ThemedText>
+        </Pressable>
+        {response && (
+          <ThemedText>
+            Response: <ThemedText type="defaultSemiBold">{response}</ThemedText>
+          </ThemedText>
+        )}
+        {error && <ThemedText style={styles.errorText}>Error: {error}</ThemedText>}
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
@@ -103,5 +139,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+  },
+  button: {
+    backgroundColor: "#007AFF",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+  },
+  errorText: {
+    color: "#FF3B30",
   },
 });
