@@ -8,7 +8,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Link } from "expo-router";
 
-const API_BASE_URL = "http://localhost:4010";
+const API_BASE_URL = "http://192.168.11.34:4010";
 
 export default function HomeScreen() {
   const [response, setResponse] = useState<string | null>(null);
