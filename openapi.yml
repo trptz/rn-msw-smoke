@@ -1,0 +1,28 @@
+openapi: 3.0.3
+info:
+  title: Prism Smoke Test API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:4010
+
+paths:
+  /hello:
+    get:
+      summary: Hello world
+      operationId: getHello
+      responses:
+        "200":
+          description: Returns a friendly greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [text]
+                properties:
+                  text:
+                    type: string
+              examples:
+                ok:
+                  value:
+                    text: Hello from Prism!
