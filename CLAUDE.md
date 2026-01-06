@@ -48,6 +48,7 @@ npx eas-cli@latest build --platform android -s  # Build and submit Android
 ## Documentation Resources
 
 Consult official Expo documentation for implementation details:
+
 - https://docs.expo.dev/llms-full.txt - Complete Expo documentation
 - https://docs.expo.dev/llms-eas.txt - EAS documentation
 - https://docs.expo.dev/llms-sdk.txt - Expo SDK documentation
