@@ -13,7 +13,8 @@
     "draft": "npx eas-cli@latest workflow:run create-draft.yml",
     "development-builds": "npx eas-cli@latest workflow:run create-development-builds.yml",
     "deploy": "npx eas-cli@latest workflow:run deploy-to-production.yml",
-    "format": "prettier --write '**/*.{js,ts,tsx,json,md}'"
+    "format": "prettier --write '**/*.{js,ts,tsx,json,md}'",
+    "mock": "prism mock openapi.yml -h 0.0.0.0"
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",
@@ -45,6 +46,7 @@
     "react-native-worklets": "0.5.1"
   },
   "devDependencies": {
+    "@stoplight/prism-cli": "^5.14.2",
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
