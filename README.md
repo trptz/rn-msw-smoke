@@ -39,7 +39,6 @@ Run `npm run deploy` to [deploy to production](https://docs.expo.dev/eas/workflo
 
 Expo offers hosting for websites and API functions via EAS Hosting. See the [Getting Started](https://docs.expo.dev/eas/hosting/get-started/) guide to learn more.
 
-
 ## Get a fresh project
 
 When you're ready, run:
@@ -63,4 +62,5 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
 # rn-msw-smoke
